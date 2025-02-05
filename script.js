@@ -2,7 +2,7 @@ window.onload = function () {
 var canvas = document.getElementById("mazeCanvas");
   var ctx = canvas.getContext("2d");
 
-  var mazeIcon = {
+  var maze = {
     draw: function (ctx) {
       ctx.strokeStyle = "rgba(0,0,0,0)";
       ctx.miterLimit = 4;
