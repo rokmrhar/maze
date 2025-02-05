@@ -1,4 +1,5 @@
-  var canvas = document.getElementById("mazeCanvas");
+window.onload = function () {
+var canvas = document.getElementById("mazeCanvas");
   var ctx = canvas.getContext("2d");
 
   var mazeIcon = {
@@ -863,6 +864,7 @@
 		ctx.lineTo(482,482);
       ctx.stroke(); 
     },
+  }
   };
 
   mazeIcon.draw(ctx);
