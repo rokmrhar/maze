@@ -3,21 +3,174 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
-    height: 100vh; /* Makes body take full viewport height */
-    background-color: #f0f0f0; /* Optional: Adds background for better visibility */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Uporabimo min-height za celoten zaslon */
+    background-image: url("https://rokmrhar.github.io/maze/26161959_1m1y_5wp1_220328.svg");
+    background-size: cover; /* Prilagodi velikost ozadja */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e1f4f9;
+}
+
+h2 {
+    font-size: 4rem; /* Uporabimo rem za boljšo skalabilnost */
+    font-family: 'Passion One';
+    letter-spacing: 2px;
+    color: white;
+    margin-top: 5%;
+    text-align: center; /* Centrirajte naslov */
+}
+
+h3 {
+    font-size: 2.5rem; /* Uporabimo rem za boljšo skalabilnost */
+    font-family: 'Passion One';
+    letter-spacing: 2px;
+    margin: 3%;
+    text-align: center; /* Centrirajte podnaslov */
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers child elements (maze and buttons) */
+    align-items: center;
+    position: relative;
+
+}
+
+.infos {
+    position: absolute;
+    top: 50%;
+    left: 104%;
+    transform: translateY(-39%);
+    height: 700px; 
+    width: 90%; 
+    max-width: 300px; 
+    border: 1px solid black;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #ffef99;
+    box-sizing: border-box;
 }
 
 .maze {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 700px; 
 }
 
+button {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1.25rem; /* Uporabimo rem za boljšo skalabilnost */
+    text-transform: uppercase;
+    padding: 10px 25px;
+    font-weight: bold;
+    background-color: #FFD700;
+    color: #5A3E2B;
+    width: 90%;
+    text-align: center;
+    margin: 10px 0; /* Dodajte razmik med gumbi */
+    cursor: pointer; /* Spremeni kazalec miške ob hoverju */
+}
+
+button:hover {
+    background-color: #e6c200;
+}
+
+.info-btn, .st, .rt {
+    margin-top: 10%;
+    font-size: 2.5rem; /* Uporabimo rem za boljšo skalabilnost */
+}
+
+.st, .rt {
+    font-size: 2rem; /* Uporabimo rem za boljšo skalabilnost */
+}
+
+canvas {
+    max-width: 100%; /* Zagotovi, da se canvas prilagodi širini */
+    height: auto; /* Ohrani razmerje stranic */
+}
+
+/* Media queries za različne velikosti zaslonov */
+@media (max-width: 1200px) {
+    h2 {
+        font-size: 3rem; /* Manjša pisava za manjše zaslone */
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    .infos {
+        left: 50%; /* Centrirajte infos na manjših zaslonih */
+        transform: translate(-50%, -38%);
+        width: 80%; /* Prilagodljiva širina */
+    }
+
+    button {
+        font-size: 1rem; /* Manjša pisava za gumbe */
+    }
+
+    .info-btn, .st, .rt {
+        font-size: 2rem; /* Manjša pisava za gumbe */
+    }
+
+    .st, .rt {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2.5rem; /* Še manjša pisava za mobilne naprave */
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    .infos {
+        position: static; /* Odstranimo absolutno pozicioniranje */
+        transform: none;
+        width: 100%; /* Polna širina */
+        margin-top: 20px; /* Dodajte razmik */
+    }
+
+    button {
+        font-size: 0.875rem; /* Še manjša pisava za gumbe */
+    }
+
+    .info-btn, .st, .rt {
+        font-size: 1.5rem;
+    }
+
+    .st, .rt {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem; /* Najmanjša pisava za zelo majhne zaslone */
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 0.75rem; /* Najmanjša pisava za gumbe */
+    }
+
+    .info-btn, .st, .rt {
+        font-size: 1.25rem;
+    }
+
+    .st, .rt {
+        font-size: 1rem;
+    }
+}

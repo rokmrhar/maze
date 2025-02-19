@@ -865,7 +865,6 @@
   };
 
   mazeIcon.draw(ctx);
-// Solution path (your provided coordinates)
 const path = [
     { x: 234, y: 2 }, { x: 234, y: 10 }, { x: 218, y: 10 }, { x: 218, y: 42 },
     { x: 202, y: 42 }, { x: 202, y: 58 }, { x: 234, y: 58 }, { x: 234, y: 74 },
@@ -891,19 +890,15 @@ let animationRunning = false;
 const movingObject = {
     x: path[0].x,
     y: path[0].y,
-    size: 10
+    size: 13
 };
-
-// Draw the moving object (blue square)
 function drawObject() {
     ctx.fillStyle = "blue";
     ctx.fillRect(movingObject.x - 5, movingObject.y - 5, movingObject.size, movingObject.size);
 }
-
-// Draw the red solution path
 function drawSolutionPath(upToIndex) {
     ctx.strokeStyle = "#ff0000";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 13;
     ctx.beginPath();
     ctx.moveTo(path[0].x, path[0].y);
 
@@ -913,8 +908,6 @@ function drawSolutionPath(upToIndex) {
 
     ctx.stroke();
 }
-
-// Animation loop
 function animate() {
     if (!animationRunning) return;
 
@@ -941,18 +934,14 @@ function animate() {
 
     setTimeout(() => {
         requestAnimationFrame(animate);
-    }, 100);
+    }, 210);
 }
-
-// Start animation on button click
 startBtn.addEventListener("click", () => {
     if (!animationRunning) {
         animationRunning = true;
         animate();
     }
 });
-
-// Reset animation
 resetBtn.addEventListener("click", () => {
     animationRunning = false;
     index = 0;
@@ -964,5 +953,16 @@ resetBtn.addEventListener("click", () => {
     mazeIcon.draw(ctx);
 });
 
-// Initial draw
-mazeIcon.draw(ctx);
+const infoBtn = document.getElementById("info");
+
+infoBtn.addEventListener("click", () => {
+    Swal.fire({
+	  icon: "info",
+	  title: "Informations",
+	  theme: 'borderless',
+	  text: "Rok Mrhar, 4.RA",
+	  heightAuto: true,
+	  footer: '<a href="https://github.com/rokmrhar/maze">SEE MORE ABOUT THIS PROJECT</a>'
+	  
+	});
+});

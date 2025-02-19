@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7825/7825821.png">
     <title>Maze</title>
     <link rel="stylesheet" href="style.css">
-    
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Titan+One&display=swap" rel="stylesheet">
+
 </head>
 	<body>
 		<div class="main">
-			<div class="buttons">
-			
-			</div>
+			<h2>MAZE</h2>
 			<div class="maze">
 				<canvas id="canvas" width="700" height="700"></canvas>
+				<div class="infos">
+					<h3>controls</h3>
+					<button type="button" class="info-btn" id="info"><i class="fa fa-info-circle fa-6x"></i></button>
+					<button type="button" class="st" id="start">Start</button>
+					<button type="button" class="rt" id="reset">Reset</button>
+				</div>
 			</div>
 		</div>
 		<script src="script.js"></script> 
