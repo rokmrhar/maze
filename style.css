@@ -6,22 +6,46 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("https://rokmrhar.github.io/maze/26161959_1m1y_5wp1_220328.svg");
+    background-image: url("https://rokmrhar.github.io/maze/slike/26161959_1m1y_5wp1_220328.svg");
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     background-color: #e1f4f9;
+	position: relative;
 }
-
+.metulj {
+    position: absolute;
+    top: 13vh;  
+    left: 14vw; 
+    width: 19vh; 
+    max-width: 170px; 
+    height: auto;
+}
+.pikapoka {
+    position: absolute;
+    bottom: 2vh;  
+    left: 12vw; 
+    width: 19vh; 
+    max-width: 170px; 
+    height: auto;
+}
+.cebelica {
+    position: fixed;  
+    top: 25px;        
+    right: 40px;     
+    width: 150px;     
+    height: auto;
+    max-width: 170px; 
+    z-index: 9999;    
+}
 h2 {
-    font-size: 50px; 
+    font-size: 70px; 
     font-family: 'Passion One';
     letter-spacing: 2px;
-    color: white;
+    color: #D89216;
     margin-top: 5%;
     text-align: center; 
 }
-
 h3 {
     font-size: 2.5rem; 
     font-family: 'Passion One';
@@ -29,39 +53,50 @@ h3 {
     margin: 3%;
     text-align: center; 
 }
-
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-
 }
-
+.maze {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px; 
+    width: 100%;
+}
+canvas {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
 .infos {
     position: absolute;
     top: 50%;
     left: 104%;
     transform: translateY(-39%);
-    height: 700px; 
-    width: 90%; 
-    max-width: 300px; 
+    height: auto; 
+    width: 90%;
+    max-width: 300px;
     border: 1px solid black;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 5px;
-    background-color: #ffef99;
+    background-color: #FFD166;
     box-sizing: border-box;
+    padding: 10px;
+	color: #785900;
 }
-
-.maze {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 700px; 
+.swal2-container.swal2-center>.swal2-popup{
+  background-color: #FFF8E1;
 }
-
+.swal2-footer{
+	color: #B37E22;
+	text-decoration: none;
+}
 button {
     border: 1px solid black;
     border-radius: 5px;
@@ -69,106 +104,73 @@ button {
     text-transform: uppercase;
     padding: 10px 25px;
     font-weight: bold;
-    background-color: #FFD700;
-    color: #5A3E2B;
+    background-color: #E6A700;
+    color: #281C2D;
     width: 90%;
+    max-width: 250px;
+    min-width: 150px;
     text-align: center;
     margin: 10px 0; 
 }
-
 button:hover {
-    background-color: #e6c200;
+    background-color: #D0752E;
 }
-
 .info-btn, .st, .rt {
     margin-top: 10%;
-    font-size: 2.5rem; 
-}
-
-.st, .rt {
     font-size: 2rem; 
 }
-
-canvas {
-    max-width: 100%; 
-    height: auto; 
-}
-
-/* Media queries za različne velikosti zaslonov */
 @media (max-width: 1200px) {
     h2 {
         font-size: 3rem; 
     }
-
     h3 {
         font-size: 2rem;
     }
-
+    .maze {
+        flex-direction: column;
+    }
     .infos {
-        left: 50%;
-        transform: translate(-50%, -38%);
+        position: static;
+        transform: none;
         width: 80%; 
+        max-width: 350px;
+        margin-top: 20px;
     }
-
     button {
-        font-size: 1rem; 
-    }
-
-    .info-btn, .st, .rt {
-        font-size: 2rem; 
-    }
-
-    .st, .rt {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
-
 @media (max-width: 768px) {
     h2 {
         font-size: 2.5rem; 
     }
-
     h3 {
         font-size: 1.75rem;
     }
-
     .infos {
-        position: static;
-        transform: none;
-        width: 100%; 
-        margin-top: 20px; 
+        width: 100%;
+        max-width: 350px;
     }
-
     button {
         font-size: 0.875rem; 
     }
-
-    .info-btn, .st, .rt {
-        font-size: 1.5rem;
-    }
-
-    .st, .rt {
-        font-size: 1.25rem;
-    }
 }
-
 @media (max-width: 480px) {
     h2 {
         font-size: 2rem;
     }
-
     h3 {
         font-size: 1.5rem;
     }
-
+    .infos {
+        width: 100%;
+    }
     button {
         font-size: 0.75rem;
     }
-
     .info-btn, .st, .rt {
         font-size: 1.25rem;
     }
-
     .st, .rt {
         font-size: 1rem;
     }
