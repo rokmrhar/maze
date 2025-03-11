@@ -898,7 +898,7 @@ function drawObject() {
     ctx.fillRect(movingObject.x - 5, movingObject.y - 5, movingObject.size, movingObject.size);
 }
 function drawSolutionPath(upToIndex) {
-    ctx.strokeStyle = "#FFD166";
+    ctx.strokeStyle = "#785900";
     ctx.lineWidth = 13;
     ctx.beginPath();
     ctx.moveTo(path[0].x, path[0].y);
