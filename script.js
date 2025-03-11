@@ -6,7 +6,7 @@
 
   const mazeIcon = {
      draw: function (ctx) {
-		ctx.strokeStyle = "#3F2D1B";
+		ctx.strokeStyle = "#FFD166";
 		ctx.fillStyle = "#e1f4f9";
 		ctx.fillRect(0, 0, canvas.width, canvas.height); 
 		ctx.lineWidth = 2;
