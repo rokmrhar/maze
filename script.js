@@ -6,8 +6,8 @@
 
   const mazeIcon = {
      draw: function (ctx) {
-		ctx.strokeStyle = "#FFD166";
-		ctx.fillStyle = "#e1f4f9";
+		ctx.strokeStyle = "#573a0b"; //barva črt v labirintu
+		ctx.fillStyle = "#e1f4f9"; //barva ozadja v labirintu
 		ctx.fillRect(0, 0, canvas.width, canvas.height); 
 		ctx.lineWidth = 2;
 		ctx.beginPath();
@@ -866,7 +866,7 @@
 	}
   };
 
-  mazeIcon.draw(ctx);
+mazeIcon.draw(ctx);
 const path = [
     { x: 234, y: 2 }, { x: 234, y: 10 }, { x: 218, y: 10 }, { x: 218, y: 42 },
     { x: 202, y: 42 }, { x: 202, y: 58 }, { x: 234, y: 58 }, { x: 234, y: 74 },
@@ -883,89 +883,98 @@ const path = [
     { x: 234, y: 474 }, { x: 234, y: 458 }, { x: 266, y: 458 }, { x: 266, y: 474 },
     { x: 250, y: 474 }, { x: 250, y: 482 }
 ];
-let index = 0;
-let drawingPath = false;
-let pathIndex = 0;
-let animationRunning = false;
-
-const movingObject = {
-    x: path[0].x,
-    y: path[0].y,
-    size: 13
-};
-function drawObject() {
-    ctx.fillStyle = "#FFD166";
-    ctx.fillRect(movingObject.x - 5, movingObject.y - 5, movingObject.size, movingObject.size);
-}
+let eraseProgress = 0;
+let isErasing = false;
+let kozarecPoln = false;
+const speedFactor = 0.05;
+const kozarecElement = document.querySelector('.kozarec');
+const kozarec2Element = document.querySelector('.kozarec2');
 function drawSolutionPath(upToIndex) {
     ctx.strokeStyle = "#FFD166";
     ctx.lineWidth = 13;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(path[0].x, path[0].y);
-
-    for (let i = 1; i <= upToIndex; i++) {
+    for (let i = 1; i <= Math.floor(upToIndex); i++) {
         ctx.lineTo(path[i].x, path[i].y);
     }
-
     ctx.stroke();
 }
 function animate() {
     if (!animationRunning) return;
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     mazeIcon.draw(ctx);
-    drawSolutionPath(drawingPath ? pathIndex : 0);
-    drawObject();
-
-    if (!drawingPath) {
-        if (index < path.length - 1) {
-            index++;
-            movingObject.x = path[index].x;
-            movingObject.y = path[index].y;
+    if (!isErasing) {
+        drawSolutionPath(pathIndex);
+        if (pathIndex < path.length - 1) {
+            pathIndex += 0.1;
         } else {
-            drawingPath = true;
+            if (!kozarecPoln) {
+                kozarec2Element.src = "https://rokmrhar.github.io/maze/slike/kozarec_poln.png"; 
+                kozarePoln = true;
+                setTimeout(() => { 
+                    kozarecElement.src = "https://rokmrhar.github.io/maze/slike/kozarec_prazen1.png";
+                    isErasing = true;
+                }, 500); 
+            }
         }
     } else {
-        if (pathIndex < path.length - 1) {
-            pathIndex++;
+        if (eraseProgress < path.length) {
+            drawSolutionPath(path.length - 1);
+            ctx.strokeStyle = "#e1f4f9";
+            ctx.lineWidth = 13;
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+            ctx.beginPath();
+            ctx.moveTo(path[0].x, path[0].y);
+            for (let i = 1; i <= Math.floor(eraseProgress); i++) {
+                ctx.lineTo(path[i].x, path[i].y);
+            }
+            ctx.stroke();
+            eraseProgress += 0.1;
         } else {
+            animationRunning = false;
+            isErasing = false;
             return;
         }
     }
-
-    setTimeout(() => {
-        requestAnimationFrame(animate);
-    }, 210);
+    requestAnimationFrame(animate);
 }
 startBtn.addEventListener("click", () => {
     if (!animationRunning) {
+        kozarecElement.src = "https://rokmrhar.github.io/maze/slike/kozarec_poln1.png";
+        kozarec2Element.src = "https://rokmrhar.github.io/maze/slike/kozarec_prazen.png"; 
+        kozarecPoln = false;
+        pathIndex = 0;
+        eraseProgress = 0;
+        isErasing = false;
         animationRunning = true;
         animate();
     }
 });
 resetBtn.addEventListener("click", () => {
     animationRunning = false;
-    index = 0;
     pathIndex = 0;
-    drawingPath = false;
-    movingObject.x = path[0].x;
-    movingObject.y = path[0].y;
+    eraseProgress = 0;
+    isErasing = false;
+    kozarecPoln = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     mazeIcon.draw(ctx);
+    kozarecElement.src = "https://rokmrhar.github.io/maze/slike/kozarec_poln.png";
+    kozarec2Element.src = "https://rokmrhar.github.io/maze/slike/kozarec_prazen.png";
 });
 
 const infoBtn = document.getElementById("info");
-
 infoBtn.addEventListener("click", () => {
     Swal.fire({
-	  icon: "info",
-	  iconColor: "#E6A700",
-	  title: "Informations",
-	  theme: 'borderless',
-	  confirmButtonColor: "#D0752E",
-	  text: "Rok Mrhar, 4.RA",
-	  heightAuto: true,
-	  footer: '<a target="_blank" href="https://github.com/rokmrhar/maze">SEE MORE ABOUT THIS PROJECT</a>'
-	  
-	});
+        icon: "info",
+        iconColor: "#E6A700",
+        title: "Informations",
+        theme: 'borderless',
+        confirmButtonColor: "#D0752E",
+        text: "Rok Mrhar, 4.RA",
+        heightAuto: true,
+        footer: '<a target="_blank" href="https://github.com/rokmrhar/maze">SEE MORE ABOUT THIS PROJECT</a>'
+    });
 });
